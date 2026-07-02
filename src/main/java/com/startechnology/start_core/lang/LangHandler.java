@@ -499,6 +499,7 @@ public class LangHandler {
         provider.add("ui.start_core.cross_dimensional_laser.output_per_sec", "§7EU Sent: %s §7EU/t");
         provider.add("ui.start_core.cross_dimensional_laser.hatch.input_per_sec_hover", "EU transferred to this array in the last second expressed in per tick");
         provider.add("ui.start_core.cross_dimensional_laser.hatch.output_per_sec_hover", "EU transferred out of this array in the last second expressed in per tick");
+
         provider.add("block.start_core.wind_controller.line", "§6§lWind Energy");
         provider.add("start_core.wind_controller.line0", "§7A wind generator whose output and rotor speed rise and fall with wind strength.");
         provider.add("start_core.wind_controller.line1", "§6Lubrication:");
@@ -518,5 +519,19 @@ public class LangHandler {
         provider.add("wind.start_core.wind_controller.weather_boost", "§bWeather: §f%sx");
         provider.add("wind.start_core.wind_controller.crowding_penalty", "§4Crowding Penalty: §c-50%");
         provider.add("wind.start_core.wind_controller.waiting_for_fluid", "Waiting for Fluid");
+
+        provider.add("item.start_core.mystical_buddy.rarity", "Rarity: %s");
+        provider.add("item.start_core.mystical_buddy.level", "Level: %s/%s");
+        provider.add("item.start_core.mystical_buddy.hunger", "Hunger: %s%%");
+        provider.add("item.start_core.mystical_buddy.happiness", "Happiness: %s%%");
+        provider.add("item.start_core.mystical_buddy.attribute_slots", "Attribute Slots: %s");
+        provider.add("item.start_core.mystical_buddy.terrarium_hint", "Can be housed inside a Buddy Terrarium.");
+        provider.add("item.start_core.light_buddy", "Light Buddy");
+        provider.add("start_core.mystical_buddy.rarity.wary", "Wary");
+        provider.add("start_core.mystical_buddy.rarity.attuned", "Attuned");
+        provider.add("start_core.mystical_buddy.rarity.devoted", "Devoted");
+        provider.add("start_core.mystical_buddy.rarity.kindred", "Kindred");
+        provider.add("start_core.mystical_buddy.rarity.soulbound", "Soulbound");
+        provider.add("start_core.mystical_buddy.rarity.unified", "Unified");
     }
 }
