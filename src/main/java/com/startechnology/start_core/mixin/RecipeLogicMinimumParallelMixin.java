@@ -22,9 +22,14 @@ public class RecipeLogicMinimumParallelMixin {
     @Shadow
     public List<GTRecipe> lastFailedMatches;
 
-    @Inject(method = "handleSearchingRecipes", at = @At("HEAD"))
+    @Inject(method = "handleSearchingRecipes", at = @At("HEAD"), cancellable = true)
     private void start_core$clearMinimumParallelBlocks(@NotNull Iterator<GTRecipe> matches, CallbackInfo ci) {
         if (machine instanceof IStarTMinimumParallelBlockCache cache) {
+            if (cache.start_core$isMinimumParallelRetryCoolingDown()) {
+                lastFailedMatches = null;
+                ci.cancel();
+                return;
+            }
             cache.start_core$clearMinimumParallelBlocks();
         }
     }

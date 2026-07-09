@@ -102,7 +102,7 @@ public class VacuumChemicalReactionChamberMachine extends WorkableElectricMultib
                 setVacuumAmount(vacuumAmount * 0.5f);
             }
             // check next tick
-            subscribeServerTick(vacuumSubscription, this::updateVacuum);
+            vacuumSubscription = subscribeServerTick(vacuumSubscription, this::updateVacuum);
         }
     }
 
@@ -111,7 +111,7 @@ public class VacuumChemicalReactionChamberMachine extends WorkableElectricMultib
         super.onWaiting();
         if (!isRemote()) {
             // check next tick
-            subscribeServerTick(vacuumSubscription, this::updateVacuum);
+            vacuumSubscription = subscribeServerTick(vacuumSubscription, this::updateVacuum);
         }
     }
 
@@ -160,6 +160,10 @@ public class VacuumChemicalReactionChamberMachine extends WorkableElectricMultib
         super.onStructureInvalid();
         vacuumAmount = 0;
         pump = new IVacuumPump.Empty();
+        if (vacuumSubscription != null) {
+            vacuumSubscription.unsubscribe();
+            vacuumSubscription = null;
+        }
     }
 
     private int redstoneOutputVacPercentToPumpCapacity() {
