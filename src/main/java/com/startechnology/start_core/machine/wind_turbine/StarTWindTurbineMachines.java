@@ -47,6 +47,7 @@ public class StarTWindTurbineMachines {
                 Component.translatable("start_core.wind_controller.line2"),
                 Component.translatable("block.start_core.breaker_line"),
                 Component.translatable("start_core.wind_controller.line3"),
+                Component.empty(),
                 Component.translatable("start_core.wind_controller.line4"),
                 Component.empty(),
                 Component.translatable("start_core.wind_controller.line5"),

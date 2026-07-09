@@ -14,7 +14,13 @@ import java.util.Set;
 @Mixin(value = WorkableMultiblockMachine.class, remap = false)
 public class WorkableMultiblockMachineMinimumParallelMixin implements IStarTMinimumParallelBlockCache {
     @Unique
+    private static final long start_core$MINIMUM_PARALLEL_RETRY_COOLDOWN = 5L;
+
+    @Unique
     private final Set<ResourceLocation> start_core$minimumParallelBlockedRecipes = new HashSet<>();
+
+    @Unique
+    private long start_core$minimumParallelRetryAfter;
 
     @Override
     public void start_core$markMinimumParallelBlocked(GTRecipe recipe) {
@@ -22,12 +28,19 @@ public class WorkableMultiblockMachineMinimumParallelMixin implements IStarTMini
         if (recipeId != null) {
             start_core$minimumParallelBlockedRecipes.add(recipeId);
         }
+        start_core$minimumParallelRetryAfter = ((WorkableMultiblockMachine) (Object) this).getOffsetTimer()
+                + start_core$MINIMUM_PARALLEL_RETRY_COOLDOWN;
     }
 
     @Override
     public boolean start_core$wasMinimumParallelBlocked(GTRecipe recipe) {
         ResourceLocation recipeId = start_core$getRecipeId(recipe);
         return recipeId != null && start_core$minimumParallelBlockedRecipes.contains(recipeId);
+    }
+
+    @Override
+    public boolean start_core$isMinimumParallelRetryCoolingDown() {
+        return ((WorkableMultiblockMachine) (Object) this).getOffsetTimer() < start_core$minimumParallelRetryAfter;
     }
 
     @Override

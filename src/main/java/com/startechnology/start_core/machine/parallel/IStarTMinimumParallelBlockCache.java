@@ -7,5 +7,7 @@ public interface IStarTMinimumParallelBlockCache {
 
     boolean start_core$wasMinimumParallelBlocked(GTRecipe recipe);
 
+    boolean start_core$isMinimumParallelRetryCoolingDown();
+
     void start_core$clearMinimumParallelBlocks();
 }
